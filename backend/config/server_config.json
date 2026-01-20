@@ -1,0 +1,6 @@
+{
+  "http_port": 8080,
+  "websocket_port": 8081,
+  "max_sessions": 1000,
+  "log_level": "info"
+}
