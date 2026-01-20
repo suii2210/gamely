@@ -1,19 +1,33 @@
-# Monopoly Arcade
+# Gamely
 
-Monopoly Arcade is a client-server game where a React UI communicates with an authoritative C++ game server over HTTP and WebSockets.
+Gamely is a multi-game online platform with shared accounts, coins, and multiplayer rooms.
+Monopoly is the first game, built as a plug-in that runs inside the Gamely core.
+
+## Phase 1: Monopoly
+- Multiplayer Monopoly runs inside Gamely's shared systems.
+- The server is authoritative: dice, movement, ownership, rent, jail, bankruptcy.
+- Clients only send actions; results are validated on the server.
+
+## Shared core systems
+- Accounts: email + password (hashed).
+- Profiles: coins and game stats persist across games.
+- Multiplayer rooms: create/join rooms by game type; start when all players join.
+- Economy: global coins earned by wins and match completion.
+- Persistence: user data and game progress saved to disk and reloaded on restart.
 
 ## Architecture
-- React client: UI only, never decides game results.
-- C++ server: authoritative logic, anti-cheat, deterministic rules.
-- REST for auth and lobby actions.
-- WebSockets for real-time gameplay updates.
+- Backend: C++ authoritative server.
+- Frontend: React UI for display and input.
+- HTTP for auth and lobby, WebSockets for real-time gameplay.
+
+## Extensibility
+New games plug into a common Game interface and reuse auth, rooms, economy, and persistence.
 
 ## Repository layout
 - backend/ : C++ server
 - frontend/ : React app
-- docs/ : architecture and design docs
+- docs/ : architecture and API docs
 
-## Notes
-- The server rolls dice, validates moves, and computes economy.
-- The client renders the board and sends player intent only.
-"# gamely" 
+## Docs
+- docs/architecture.md
+- docs/api.md

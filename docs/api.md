@@ -95,6 +95,7 @@ Response (success):
 Request:
 ```json
 {
+  "game_type": "monopoly",
   "max_players": 4
 }
 ```
@@ -107,6 +108,7 @@ Response (success):
   "room": {
     "room_id": "r_123",
     "room_code": "ABCD",
+    "game_type": "monopoly",
     "max_players": 4,
     "players": [],
     "status": "waiting"
@@ -129,6 +131,7 @@ Response (success):
   "room": {
     "room_id": "r_123",
     "room_code": "ABCD",
+    "game_type": "monopoly",
     "max_players": 4,
     "players": [
       {
@@ -159,6 +162,7 @@ Response (success):
   "room": {
     "room_id": "r_123",
     "room_code": "ABCD",
+    "game_type": "monopoly",
     "max_players": 4,
     "players": [],
     "status": "waiting"

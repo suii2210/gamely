@@ -29,6 +29,7 @@ struct PlayerInfo {
 struct RoomInfo {
   std::string room_id;
   std::string room_code;
+  std::string game_type = "monopoly";
   int max_players = 4;
   std::vector<PlayerInfo> players;
   std::string status;
@@ -64,6 +65,7 @@ struct MeResponse {
 };
 
 struct CreateRoomRequest {
+  std::string game_type = "monopoly";
   int max_players = 4;
 };
 

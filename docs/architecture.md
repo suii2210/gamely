@@ -1,22 +1,28 @@
 # Architecture
 
+## Platform overview
+Gamely hosts multiple games under one platform with shared accounts, coins, and multiplayer rooms.
+Monopoly is the first game and runs as a plug-in that implements the common Game interface.
+
 ## Backend modules
-- auth: login, password hashing, session tokens
-- users: profile, coins, game history
-- lobby: rooms, join flow, start gating
+- auth: registration, login, password hashing, session tokens
+- users: profile, coins, game stats
+- lobby: rooms by game type, join flow, ready/start gating
+- games: common interface and per-game modules
 - games/monopoly: turn logic, dice, board, rules
 - economy: coin balances and rewards
-- persistence: save and load state
+- persistence: save/load profiles and game state
 - network: REST and WebSocket transport
 - utils: logging helpers
 
 ## Frontend responsibilities
-- Render the board and pieces
+- Render lobby and board UI
 - Display server updates
-- Send user actions
+- Send player actions only (no game results)
 
-## Network messages
-REST endpoints are used for login, registration, and lobby actions. WebSockets are used for live game state.
+## Real-time sync
+- REST for login, registration, and lobby actions
+- WebSockets for gameplay state and turn updates
 
 Example WebSocket message:
 {
@@ -24,3 +30,11 @@ Example WebSocket message:
   "player": "user@email.com",
   "position": 12
 }
+
+## Persistence
+User profiles and game progress are stored on disk and reloaded on server restart.
+The server periodically saves state to reduce data loss on crashes.
+
+## Extensibility
+New games reuse authentication, rooms, economy, and persistence.
+Only the game logic changes when adding new titles.
